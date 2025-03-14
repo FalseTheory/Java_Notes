@@ -1,0 +1,27 @@
+services:
+  notes:
+    build: .
+    image: java-notes
+    container_name: java-notes
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/notes
+      - SPRING_DATASOURCE_USERNAME=notes
+      - SPRING_DATASOURCE_PASSWORD=5353
+  db:
+    image: postgres:16.1
+    container_name: notes_db
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_USER=notes
+      - POSTGRES_PASSWORD=5353
+      - POSTGRES_DB=notes
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10
