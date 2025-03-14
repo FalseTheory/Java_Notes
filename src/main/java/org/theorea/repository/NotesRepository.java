@@ -1,4 +1,7 @@
 package org.theorea.repository;
 
-public interface NotesRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.theorea.model.Note;
+
+public interface NotesRepository extends JpaRepository<Note, Long> {
 }
