@@ -10,8 +10,8 @@ import org.theorea.model.dto.NoteDto;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface NotesMapper {
 
-    @Mapping(target="createdAt", source = "createdAt")
-    @Mapping(target="updatedAt", source = "updatedAt")
+    @Mapping(target = "createdAt", source = "createdAt")
+    @Mapping(target = "updatedAt", source = "updatedAt")
     NoteDto mapToNoteDto(Note note);
 
     Note mapToNote(NewNoteDto noteDto);

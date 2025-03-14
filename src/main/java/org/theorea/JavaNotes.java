@@ -6,6 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JavaNotes {
     public static void main(String[] args) {
-        SpringApplication.run(JavaNotes.class,args);
+        SpringApplication.run(JavaNotes.class, args);
     }
 }

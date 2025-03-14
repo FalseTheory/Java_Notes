@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Заметка</title>
-    <link rel ="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <div class="container">
     <h1 th:text="${note.id == null ? 'Создать заметку' : 'Редактировать заметку'}"></h1>
-    <form th:action="@{${note.id == null} ? '/notes/new' : '/notes/edit/' + ${note.id}}" th:object="${note}" method="post">
-        <input type="hidden" th:field="*{id}" />
+    <form th:action="@{${note.id == null} ? '/notes/new' : '/notes/edit/' + ${note.id}}" th:object="${note}"
+          method="post">
+        <input type="hidden" th:field="*{id}"/>
         <label>Заголовок:</label>
-        <input type="text" th:field="*{title}" required />
+        <input type="text" th:field="*{title}" required/>
         <label>Содержание:</label>
         <textarea th:field="*{content}" required></textarea>
         <button type="submit">Сохранить</button>

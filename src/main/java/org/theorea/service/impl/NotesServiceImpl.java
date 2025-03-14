@@ -28,7 +28,7 @@ public class NotesServiceImpl implements NotesService {
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void initializeFirstTimeNote() {
-        if(repository.count() == 0) {
+        if (repository.count() == 0) {
             Note initNote = new Note();
             initNote.setTitle("Пример заметки");
             initNote.setContent("Hello World!");
@@ -59,10 +59,10 @@ public class NotesServiceImpl implements NotesService {
     public NoteDto updateNote(UpdateNoteDto updateDto) {
         Note note = repository.findById(updateDto.getId())
                 .orElseThrow(() -> new NotFoundException("Заметки с id - " + updateDto.getId() + " не найдено"));
-        if(updateDto.getContent()!=null) {
+        if (updateDto.getContent() != null) {
             note.setContent(updateDto.getContent());
         }
-        if(updateDto.getTitle()!=null) {
+        if (updateDto.getTitle() != null) {
             note.setTitle(updateDto.getTitle());
         }
 

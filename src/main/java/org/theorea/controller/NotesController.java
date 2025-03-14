@@ -62,7 +62,8 @@ public class NotesController {
         return "redirect:/notes";
     }
 
-    @GetMapping("/delete/{id}") // Использую только методы GET и POST поскольку формы html не поддерживают другие методы без JavaScript
+    @GetMapping("/delete/{id}")
+    // Использую только методы GET и POST поскольку формы html не поддерживают другие методы без JavaScript
     public String delete(@PathVariable Long id) {
         service.delete(id);
         log.info("deleting note with id - {}", id);
