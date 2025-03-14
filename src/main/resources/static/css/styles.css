@@ -9,7 +9,7 @@ body {
 
 h1 {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 a {
@@ -34,7 +34,6 @@ a:hover {
     font-size: 12px;
     color: #b5b0b0;
 }
-
 form {
     display: flex;
     flex-direction: column;
@@ -44,7 +43,6 @@ label {
     font-weight: bold;
     margin-top: 10px;
 }
-
 input[type="text"],
 textarea {
     padding: 10px;
@@ -58,7 +56,7 @@ textarea {
 
 button[type="submit"] {
     padding: 10px;
-    background-color: #3498db;
+    background-color: #07db46;
     color: white;
     border: none;
     border-radius: 4px;
@@ -66,7 +64,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #2980b9;
+    background-color: #07a335;
 }
 
 ul {
@@ -84,7 +82,6 @@ li {
     border-radius: 4px;
     margin-bottom: 10px;
 }
-
 li a {
     margin-left: 10px;
 }

@@ -12,7 +12,7 @@
     <ul>
         <li th:each="note : ${notes}">
             <div>
-                <span th:text="${note.title}"></span>
+                <label><span th:text="${note.title}"></span></label>
                 <p class="date"><span th:text="${#temporals.format(note.createdAt, 'yyyy-MM-dd')}"></span></p>
                 <p th:text="${#strings.abbreviate(note.content,100)}"></p>
 
