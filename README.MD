@@ -10,3 +10,4 @@
 - Java 21
 - PostgreSQL с созданной базой или Docker
 ## Демо работы
+![demo](https://github.com/user-attachments/assets/f92f62f8-ca1e-4e35-86ab-f98810dcd1d4)
