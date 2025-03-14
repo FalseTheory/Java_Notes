@@ -1,6 +1,8 @@
 package org.theorea.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.theorea.mapper.NotesMapper;
@@ -12,6 +14,7 @@ import org.theorea.model.exception.NotFoundException;
 import org.theorea.repository.NotesRepository;
 import org.theorea.service.NotesService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,6 +24,19 @@ public class NotesServiceImpl implements NotesService {
 
     private final NotesRepository repository;
     private final NotesMapper mapper;
+
+    @EventListener(ApplicationReadyEvent.class)
+    @Transactional
+    public void initializeFirstTimeNote() {
+        if(repository.count() == 0) {
+            Note initNote = new Note();
+            initNote.setTitle("Пример заметки");
+            initNote.setContent("Hello World!");
+            initNote.setCreatedAt(LocalDateTime.now());
+            initNote.setUpdatedAt(LocalDateTime.now());
+            repository.save(initNote);
+        }
+    }
 
     @Override
     @Transactional(readOnly = true)
