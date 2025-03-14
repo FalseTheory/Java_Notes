@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заметка</title>
+    <link rel ="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${note.id == null ? 'Создать заметку' : 'Редактировать заметку'}"></h1>
+    <form th:action="@{${note.id == null} ? '/notes/new' : '/notes/edit/' + ${note.id}}" th:object="${note}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label>Заголовок:</label>
+        <input type="text" th:field="*{title}" required />
+        <label>Содержание:</label>
+        <textarea th:field="*{content}" required></textarea>
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="/notes">Назад</a>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.querySelector("textarea");
+
+    function adjustHeight(element) {
+        element.style.height = "auto";
+        element.style.height = (element.scrollHeight) + "px";
+    }
+    
+    textarea.addEventListener("input", function() {
+        adjustHeight(this);
+    });
+
+        adjustHeight(textarea);
+    });
+</script>
+</body>
+</html>
