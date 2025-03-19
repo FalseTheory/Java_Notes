@@ -25,6 +25,11 @@ public class NotesServiceImpl implements NotesService {
     private final NotesRepository repository;
     private final NotesMapper mapper;
 
+
+    /**
+     * Функция для создания первой заметки, в случае первого запуска приложения,
+     * или если база пустая
+     */
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void initializeFirstTimeNote() {
