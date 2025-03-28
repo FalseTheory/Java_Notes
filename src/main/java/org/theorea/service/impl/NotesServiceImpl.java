@@ -2,6 +2,8 @@ package org.theorea.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +46,7 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
+    @Cacheable("notes")
     @Transactional(readOnly = true)
     public List<NoteDto> getAllNotes() {
         return repository.findAll().stream()
@@ -61,6 +64,7 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
+    @CacheEvict(value = "notes", allEntries = true)
     public NoteDto updateNote(UpdateNoteDto updateDto) {
         Note note = repository.findById(updateDto.getId())
                 .orElseThrow(() -> new NotFoundException("Заметки с id - " + updateDto.getId() + " не найдено"));
@@ -76,12 +80,14 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
+    @CacheEvict(value = "notes", allEntries = true)
     public NoteDto createNote(NewNoteDto newNoteDto) {
 
         return mapper.mapToNoteDto(repository.save(mapper.mapToNote(newNoteDto)));
     }
 
     @Override
+    @CacheEvict(value = "notes", allEntries = true)
     public void delete(Long id) {
         repository.deleteById(id);
     }
