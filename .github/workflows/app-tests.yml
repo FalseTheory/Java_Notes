@@ -1,0 +1,25 @@
+name: Timetable Tests
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-repo
+        uses: actions/checkout@v4
+
+      - name: java-setup
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+
+      - name: check-google-format-style
+        run: mvn spotless:check
+
+      - name: build-timetable
+        run: mvn clean verify --no-transfer-progress
+
